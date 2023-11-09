@@ -6,6 +6,7 @@ TagManager:
   tags:
   - barrera
   - Fantasma
+  - Estado_Fantasma
   layers:
   - Default
   - TransparentFX
