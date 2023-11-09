@@ -7,18 +7,13 @@ public class Codigo_Fantasma : MonoBehaviour
     public Transform objeto2; // Debes asignar el segundo objeto en el Inspector
     [SerializeField] Transform target; // Declarar la variable target aquí para que sea accesible en el Inspector
     NavMeshAgent agent;
-
-    public float minX = 3f; // Valor mínimo de X
-    public float maxX = 25f; // Valor máximo de X
-    public float minY = 3f; // Valor mínimo de Y
-    public float maxY = 13f; // Valor máximo de Y
-    public int TotalMovimientos = 0;
-    public int MaxMovimientosAntesCambio = 10; // Número máximo de movimientos antes de cambiar la posición
     public Vector3 inicio = new Vector3(0.33f, 2.76f, 0f);
+    public Vector3[] mitadDerecha;
 
 
     void Start()
     {
+        crearPosiciones();
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(inicio);
     }
@@ -28,7 +23,7 @@ public class Codigo_Fantasma : MonoBehaviour
         if (objeto1 != null && objeto2 != null)
         {
             float distancia = Vector3.Distance(objeto1.position, objeto2.position);
-            if (distancia < 5.0f)
+            if (distancia < 10.0f)
             {
                 InicializarPerseguir();
             }
@@ -67,31 +62,35 @@ public class Codigo_Fantasma : MonoBehaviour
         {
             agent.updateRotation = false;
             agent.updateUpAxis = false;
-            if (TotalMovimientos > 100)
+            if (agent.isStopped || agent.remainingDistance <= agent.stoppingDistance)
             {
                 Vector3 destino = RandomizarCoordenadas();
                 Debug.Log(destino);
-                agent.SetDestination(destino);
-                TotalMovimientos = 0;
-            }
-            else
-            {
-                TotalMovimientos++;
+                agent.SetDestination(destino);   
             }
         }
     }
 
     Vector3 RandomizarCoordenadas()
     {
-        float randomX = Random.Range(minX, maxX);
-        if (randomX < 0)
-            randomX = randomX * -1;
-        float randomY = Random.Range(minY, maxY);
-        if(randomY < 0)
-            randomY = randomY * -1;
-        // Crear un vector para almacenar las coordenadas aleatorias
-        Vector3 randomCoordinates = new Vector3(randomX, 0f, randomY);
+        int indice = Random.Range(0, 7);
+       
+        Vector3 randomCoordinates = mitadDerecha[indice];
 
         return randomCoordinates;
+    }
+
+    void crearPosiciones()
+    {
+        mitadDerecha = new Vector3[9];
+        mitadDerecha[0] = new Vector3(4f, 13f, 0f);
+        mitadDerecha[1] = new Vector3(26f, 12f, 0f);
+        mitadDerecha[2] = new Vector3(17f, 4f, 0f);
+        mitadDerecha[3] = new Vector3(4f, 4f, 0f);
+        mitadDerecha[4] = new Vector3(17f, -7f, 0f);
+        mitadDerecha[5] = new Vector3(4f, -6f, 0f);
+        mitadDerecha[6] = new Vector3(4f, -12f, 0f);
+        mitadDerecha[7] = new Vector3(17f, -12f, 0f);
+        mitadDerecha[8] = new Vector3(26f, 12f, 0f);
     }
 }
