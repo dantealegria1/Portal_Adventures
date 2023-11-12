@@ -14,29 +14,33 @@ public class codigo_pacman : MonoBehaviour
     public Vector3 borde_derecho = new Vector3(27f, 0.9736717f, 0f);
     public float distanciaEscape = 8f;
     GameObject[] objetosComida;
-    bool cerca;
+    public Stack<GameObject> pilaComidas;
+    public GameObject comida1;
+    public GameObject comida2;
+
 
     void Start()
     {
+        pilaComidas = new Stack<GameObject>();
         agent = GetComponent<NavMeshAgent>();
-        InicializarPerseguir();
         objetosComida = GameObject.FindGameObjectsWithTag(tagComida);
-        cerca = false;
+        pilaComidas.Push(comida1);
+        pilaComidas.Push(comida2);
+
     }
 
     void Update()
     {
         float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano().position);
 
-        Debug.Log(cerca);
         if (distanciaAlObjetivo < 10)
         {
-            CambiarEstadoCerca(true);
+      
             Escapar();
         }
         else
         {
-            CambiarEstadoCerca(false);
+
             Libre();
         }
     }
@@ -53,54 +57,33 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
-    void CambiarEstadoCerca(bool nuevoEstado)
-    {
-        if (cerca != nuevoEstado)
-        {
-            cerca = nuevoEstado;
-
-            // Puedes agregar lógica adicional aquí si es necesario
-        }
-    }
-
     void Libre()
     {
-        if (!cerca)
+        if (pilaComidas.Count > 0)
         {
-            if (objetosComida.Length > 0)
+            GameObject primerComida = pilaComidas.Peek();
+            agent.SetDestination(primerComida.transform.position);
+            if (Vector3.Distance(transform.position, primerComida.transform.position) < 1f)
             {
-                GameObject comidaMasCercana = EncontrarComidaMasCercana();
-                if (comidaMasCercana != null)
-                {
-                    target_libre = comidaMasCercana.transform;
-                    MoverHaciaObjetivo();
-                }
+                
+                MoverHaciaSiguienteComida();
             }
         }
     }
 
-    GameObject EncontrarComidaMasCercana()
+    void MoverHaciaSiguienteComida()
     {
-        GameObject comidaMasCercana = null;
-        float distanciaMasCercana = Mathf.Infinity;
-        Vector3 posicionActual = transform.position;
-
-        foreach (GameObject comida in objetosComida)
+        
+        if (pilaComidas.Count > 0)
         {
-            float distancia = Vector3.Distance(posicionActual, comida.transform.position);
-            if (distancia < distanciaMasCercana)
+            pilaComidas.Pop(); 
+            if (pilaComidas.Count > 0)
             {
-                distanciaMasCercana = distancia;
-                comidaMasCercana = comida;
+                GameObject siguienteComida = pilaComidas.Peek();
+                agent.SetDestination(siguienteComida.transform.position);
+                Debug.Log("Siguiente comida: " + siguienteComida.name);
             }
         }
-
-        return comidaMasCercana;
-    }
-
-    void MoverHaciaObjetivo()
-    {
-        agent.SetDestination(target_libre.position);
     }
 
     void Escapar()
@@ -168,4 +151,5 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
+  
 }
