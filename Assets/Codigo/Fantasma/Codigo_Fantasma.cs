@@ -64,7 +64,6 @@ public class Codigo_Fantasma : MonoBehaviour
             if (agent.isStopped || agent.remainingDistance <= agent.stoppingDistance)
             {
                 Vector3 destino = RandomizarCoordenadas();
-                Debug.Log(destino);
                 agent.SetDestination(destino);   
             }
         }

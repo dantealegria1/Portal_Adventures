@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 149791830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.64, y: 27.62, z: 0.103614636}
+  m_LocalPosition: {x: 13.07, y: 1.1, z: 0.103614636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 156011723}
   m_Layer: 0
   m_Name: fantasmass
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,7 +406,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 8
+  m_Speed: 3
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 415480621}
   m_Layer: 0
   m_Name: imagen_fantasma3
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,8 +595,8 @@ Transform:
   m_GameObject: {fileID: 479310730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.75, y: -0.44, z: -0.017689545}
-  m_LocalScale: {x: 74.99103, y: 51.92892, z: 1}
+  m_LocalPosition: {x: -4.3636, y: 1.9903, z: -0.017689545}
+  m_LocalScale: {x: 59.306503, y: 32.395622, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2092265895}
@@ -822,7 +822,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 8
+  m_Speed: 3
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 689366449}
   m_Layer: 0
   m_Name: imagen_fantasma2
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -928,7 +928,7 @@ Transform:
   m_GameObject: {fileID: 689366447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.76, y: -5.57, z: -0.2630362}
+  m_LocalPosition: {x: 26.96, y: 1.53, z: -0.2630362}
   m_LocalScale: {x: 0.04460739, y: 0.03843539, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1028,8 +1028,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 5
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1101,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 806720028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.79, y: 13.33, z: 0}
+  m_LocalPosition: {x: -25, y: 1, z: 0}
   m_LocalScale: {x: -1.1801, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1119,14 +1119,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0ba20f1ef6fb64181c5d7397868d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objeto1: {fileID: 806720032}
-  objeto2: {fileID: 1580374431}
   target: {fileID: 1824491544}
   target_libre: {fileID: 0}
   tagComida: comer
-  inicio: {x: 0.33, y: 2.76, z: 0}
-  mitadDerecha: []
-  mitadIzquierda: []
+  objetivos:
+  - {fileID: 1580374431}
+  - {fileID: 638092482}
+  - {fileID: 322887309}
+  - {fileID: 1001401316}
+  borde_izquierdo: {x: -27, y: 1, z: 0}
+  borde_derecho: {x: 27, y: 0.9736717, z: 0}
+  distanciaEscape: 2
 --- !u!1 &996056641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3440,6 +3443,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -29, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -20, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -3471,6 +3484,26 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 19, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 28, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -29, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3640,6 +3673,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 28, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -29, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -20, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -3671,6 +3724,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 19, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 28, y: 1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -5724,15 +5787,15 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 450
+  - m_RefCount: 456
     m_Data: {fileID: 11400000, guid: cfe56b635149fc24a985d82222556e34, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 450
+  - m_RefCount: 456
     m_Data: {fileID: 21300096, guid: 1a08f9bec49c04809b03ba62a218b140, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 450
+  - m_RefCount: 456
     m_Data:
       e00: 1
       e01: 0
@@ -5751,7 +5814,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 450
+  - m_RefCount: 456
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -5943,7 +6006,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 8
+  m_Speed: 3
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -6376,7 +6439,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 8
+  m_Speed: 5
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -6486,8 +6549,8 @@ Transform:
   m_GameObject: {fileID: 1690603039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.83, y: -0.83, z: 0}
-  m_LocalScale: {x: 0.19922857, y: 0.17702515, z: 1}
+  m_LocalPosition: {x: 27, y: 0.97367173, z: 0}
+  m_LocalScale: {x: 0.18514112, y: 0.1645077, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6622,7 +6685,7 @@ Transform:
   m_GameObject: {fileID: 1824491543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.06, y: 12.23, z: 0.103614636}
+  m_LocalPosition: {x: -6.67, y: 26.75, z: 0.103614636}
   m_LocalScale: {x: 0.783, y: 0.7396, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6693,7 +6756,7 @@ GameObject:
   - component: {fileID: 1967073206}
   m_Layer: 0
   m_Name: imagen_fantasma4
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6823,7 +6886,7 @@ GameObject:
   - component: {fileID: 2093341575}
   m_Layer: 0
   m_Name: imagen_fantasma
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

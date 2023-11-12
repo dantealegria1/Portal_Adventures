@@ -5,89 +5,81 @@ using UnityEngine.AI;
 
 public class codigo_pacman : MonoBehaviour
 {
-
-    public Transform objeto1; // Debes asignar el primer objeto en el Inspector
-    public Transform objeto2; // Debes asignar el segundo objeto en el Inspector
-    [SerializeField] Transform target; // Declarar la variable target aquí para que sea accesible en el Inspector
+    [SerializeField] Transform target;
     [SerializeField] Transform target_libre;
     [SerializeField] string tagComida = "comer";
     NavMeshAgent agent;
-    public Vector3 inicio = new Vector3(0.33f, 2.76f, 0f);
-    public Vector3[] mitadDerecha;
-    public Vector3[] mitadIzquierda;
+    public List<Transform> objetivos;  // Cambiado a una lista de objetivos
+    public Vector3 borde_izquierdo = new Vector3(-27f, 0.9736717f, 0f);
+    public Vector3 borde_derecho = new Vector3(27f, 0.9736717f, 0f);
+    public float distanciaEscape = 8f;
+    GameObject[] objetosComida;
+    bool cerca;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        InicializarPerseguir();
+        objetosComida = GameObject.FindGameObjectsWithTag(tagComida);
+        cerca = false;
     }
 
     void Update()
     {
-        if (objeto1 != null && objeto2 != null)
+        float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano().position);
+
+        Debug.Log(cerca);
+        if (distanciaAlObjetivo < 10)
         {
-            float distancia = Vector3.Distance(objeto1.position, objeto2.position);
-            if (distancia < 10.0f)
-            {
-                //InicializarPerseguir();
-                Debug.Log("hola");
-            }
-            else
-            {
-                Libre();
-            }
+            CambiarEstadoCerca(true);
+            Escapar();
         }
         else
         {
-            Debug.LogWarning("Make sure to assign the objects in the Inspector.");
+            CambiarEstadoCerca(false);
+            Libre();
         }
     }
 
-    public void InicializarPerseguir()
+    void InicializarPerseguir()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
 
-        if (agent != null)
+        if (objetivos.Count > 0)
         {
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
+            target = objetivos[0];  // Establece el primer objetivo por defecto
+            agent.SetDestination(target.position);
+        }
+    }
 
-            if (target != null)
-            {
-                agent.SetDestination(target.position);
-            }
+    void CambiarEstadoCerca(bool nuevoEstado)
+    {
+        if (cerca != nuevoEstado)
+        {
+            cerca = nuevoEstado;
+
+            // Puedes agregar lógica adicional aquí si es necesario
         }
     }
 
     void Libre()
     {
-        agent = GetComponent<NavMeshAgent>();
-
-        if (agent != null)
+        if (!cerca)
         {
-            agent.updateRotation = false;
-            agent.updateUpAxis = false;
-            if (agent.isStopped || agent.remainingDistance <= agent.stoppingDistance)
+            if (objetosComida.Length > 0)
             {
-                BuscarComida();
-            }
-        }
-    }
-    void BuscarComida()
-    {
-       
-        GameObject[] objetosComida = GameObject.FindGameObjectsWithTag(tagComida);
-        if (objetosComida.Length > 0)
-        {
-            GameObject comidaMasCercana = EncontrarComidaMasCercana(objetosComida);
-            if (comidaMasCercana != null)
-            {
-                target_libre = comidaMasCercana.transform;
-                MoverHaciaObjetivo();
+                GameObject comidaMasCercana = EncontrarComidaMasCercana();
+                if (comidaMasCercana != null)
+                {
+                    target_libre = comidaMasCercana.transform;
+                    MoverHaciaObjetivo();
+                }
             }
         }
     }
 
-    GameObject EncontrarComidaMasCercana(GameObject[] objetosComida)
+    GameObject EncontrarComidaMasCercana()
     {
         GameObject comidaMasCercana = null;
         float distanciaMasCercana = Mathf.Infinity;
@@ -111,7 +103,69 @@ public class codigo_pacman : MonoBehaviour
         agent.SetDestination(target_libre.position);
     }
 
+    void Escapar()
+    {
+        float movimiento = 5f;
+        if (objetivos.Count > 0)
+        {
+            Vector3 punto = GetObjetivoMasCercano().position;
+            Vector3 Nuevaposicion = new Vector3();
+            Vector3 posActual = transform.position;
+            if (punto.x > posActual.x)
+            {
+                Nuevaposicion.x = posActual.x - movimiento;
+            }
+            else
+            {
+                Nuevaposicion.x = posActual.x + movimiento; 
+            }
+            if (punto.y > posActual.y)
+            {
+                Nuevaposicion.y = posActual.y - movimiento;
+            }
+            else
+            {
+                Nuevaposicion.y = posActual.y + movimiento;
+            }
 
+            agent.SetDestination(Nuevaposicion);
+        }
+    }
 
+    Transform GetObjetivoMasCercano()
+    {
+        Transform objetivoMasCercano = null;
+        float distanciaMasCercana = Mathf.Infinity;
+        Vector3 posicionActual = transform.position;
+
+        foreach (Transform objetivo in objetivos)
+        {
+            float distancia = Vector3.Distance(posicionActual, objetivo.position);
+            if (distancia < distanciaMasCercana)
+            {
+                distanciaMasCercana = distancia;
+                objetivoMasCercano = objetivo;
+            }
+        }
+
+        return objetivoMasCercano;
+    }
+
+    void CambiarLado()
+    {
+        Vector3 actual = transform.position;
+
+        if (actual.y > 0 && actual.y < 1)
+        {
+            if (actual.x == 26)
+            {
+                transform.position = borde_izquierdo;
+            }
+            else if (actual.x == -26)
+            {
+                transform.position = borde_derecho;
+            }
+        }
+    }
 
 }
