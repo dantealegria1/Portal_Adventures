@@ -22,7 +22,7 @@ public class Codigo_Fantasma : MonoBehaviour
         if (objeto1 != null && objeto2 != null)
         {
             float distancia = Vector3.Distance(objeto1.position, objeto2.position);
-            if (distancia < 10.0f)
+            if (distancia < 6)
             {
                 InicializarPerseguir();
             }
@@ -64,7 +64,6 @@ public class Codigo_Fantasma : MonoBehaviour
             if (agent.isStopped || agent.remainingDistance <= agent.stoppingDistance)
             {
                 Vector3 destino = RandomizarCoordenadas();
-                Debug.Log(destino);
                 agent.SetDestination(destino);   
             }
         }

@@ -7,6 +7,8 @@ TagManager:
   - barrera
   - Fantasma
   - Estado_Fantasma
+  - comer
+  - Portal
   layers:
   - Default
   - TransparentFX
