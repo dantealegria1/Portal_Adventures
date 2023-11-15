@@ -1353,7 +1353,7 @@ Transform:
   m_GameObject: {fileID: 806720028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.98, y: 9.76, z: 0}
+  m_LocalPosition: {x: 16.86, y: 6.24, z: 0}
   m_LocalScale: {x: -0.9193333, y: 0.77903, z: 0.77903}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1389,6 +1389,7 @@ MonoBehaviour:
   borde_izquierdo: {x: -27, y: 1, z: 0}
   borde_derecho: {x: 27, y: 0.9736717, z: 0}
   distanciaEscape: 2
+  vidasMax: 3
   comida1: {fileID: 1824491543}
   comida2: {fileID: 149791830}
   comida3: {fileID: 781253533}
@@ -1396,6 +1397,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   distanciaRaycast: 2
+  perdiste: perdiste
+  ganaste: ganaste
 --- !u!1 &996056641
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,8 +6879,8 @@ Transform:
   m_GameObject: {fileID: 1580374429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.18, y: -5.15, z: 0.15542884}
-  m_LocalScale: {x: 1.0146374, y: 0.86673677, z: 0.72137827}
+  m_LocalPosition: {x: 3.34, y: -0.75, z: 0.15542884}
+  m_LocalScale: {x: 0.9715863, y: 0.8299611, z: 0.6907702}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 156011723}
@@ -7428,7 +7431,7 @@ Transform:
   m_GameObject: {fileID: 2093341574}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.99, y: -4.04, z: -0.2630362}
+  m_LocalPosition: {x: 3.67, y: -0.68, z: -0.2630362}
   m_LocalScale: {x: 0.2811559, y: 0.29051688, z: 0.82322}
   m_ConstrainProportionsScale: 0
   m_Children: []

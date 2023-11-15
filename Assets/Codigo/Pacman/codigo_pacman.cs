@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class codigo_pacman : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class codigo_pacman : MonoBehaviour
     public float distanciaEscape = 8f;
     GameObject[] objetosComida;
     public Stack<GameObject> pilaComidas;
+    public Stack<GameObject> pilavidas = new Stack<GameObject>();
+    public int vidasMax = 3;
     public GameObject comida1;
     public GameObject comida2;
     public GameObject comida3;
     public LayerMask capaBarrera; // Capa que representa las barreras en tu escena
     public float distanciaRaycast = 2f;
-
+    public string perdiste;
+    public string ganaste; 
     void Start()
     {
         pilaComidas = new Stack<GameObject>();
@@ -31,35 +35,52 @@ public class codigo_pacman : MonoBehaviour
         pilaComidas.Push(comida2);
         pilaComidas.Push(comida3);
         Libre();
+        vidas();
     }
 
     private float tiempoEsperaLibre = 1f; // Ajusta el tiempo de espera según tus necesidades
 
     void Update()
     {
-        CambiarLado();
-        float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
-        float distanciaAlPortal = Vector3.Distance(transform.position, GetObjetivoMasCercano(portales).position);
-        // Usar un umbral combinado para considerar la distancia en todas las direcciones
-        float umbralDistancia = 5f;
-        if (distanciaAlObjetivo < umbralDistancia)
+        if (pilaComidas.Count > 0)
         {
-           if(10 < distanciaAlPortal)
+            CambiarLado();
+            float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
+            float distanciaAlPortal = Vector3.Distance(transform.position, GetObjetivoMasCercano(portales).position);
+            float distanciaChoque = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
+            // Usar un umbral combinado para considerar la distancia en todas las direcciones
+            float umbralDistancia = 5f;
+            if (distanciaAlObjetivo < umbralDistancia)
             {
-                Escapar();
+                if (10 < distanciaAlPortal)
+                {
+                    Escapar();
+                    if (distanciaChoque < 1.2f)
+                    {
+                        muerte();
+                    }
+
+                }
+                else
+                {
+                    agent.SetDestination(GetObjetivoMasCercano(portales).position);
+                }
             }
             else
             {
-                agent.SetDestination(GetObjetivoMasCercano(portales).position);
+                if (!IsInvoking("Libre"))
+                {
+                    Invoke("Libre", tiempoEsperaLibre);
+                }
             }
         }
         else
         {
-            if (!IsInvoking("Libre"))
-            {
-                Invoke("Libre", tiempoEsperaLibre);
-            }
+            
+            Debug.Log("Ganaste");
+            SceneManager.LoadScene(ganaste);
         }
+
     }
 
 
@@ -113,9 +134,9 @@ public class codigo_pacman : MonoBehaviour
 
                 Vector3 nuevaPosicion = transform.position + direccionAlejarse.normalized * 10f; // Ajusta el valor 5f según sea necesario
                 agent.SetDestination(nuevaPosicion);
+
         }
     }
-
 
     Transform GetObjetivoMasCercano(List<Transform> listaDeObjetivos)
     {
@@ -148,6 +169,49 @@ public class codigo_pacman : MonoBehaviour
             transform.position = NuevaPosicion;
             Debug.Log(transform.position);
         }
+    }
+
+    void vidas()
+    {
+        for(int i=0; i<4; i++)
+        {
+            GameObject vida = new GameObject("Vida " + (i + 1));
+            pilavidas.Push(vida);
+        }
+    }
+
+    void muerte()
+    {
+        if (objetivos.Count > 0)
+        {
+            Transform objetivoMasCercano = GetObjetivoMasCercano(objetivos);
+            //Vector3 distancia = transform.position - objetivoMasCercano.position;
+        }
+        if(vidasMax > 0)
+        {
+            Debug.Log(vidasMax);
+            Vector3 Inicio = new Vector3(0f, 0f, 0f);
+            transform.position = Inicio;
+            vidasMax--;
+            pilavidas.Pop();
+        }
+        else
+        {
+           
+            Debug.Log("PERDISTE EL JUEGO");
+            SceneManager.LoadScene(perdiste);
+           
+        }
+    }
+    void CerrarJuego()
+    {
+        // Verificar si la aplicación se está ejecutando en el editor de Unity
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Si no está en el editor, cerrar la aplicación
+        Application.Quit();
+#endif
     }
 
 }
