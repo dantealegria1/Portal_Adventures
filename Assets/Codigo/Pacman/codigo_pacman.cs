@@ -6,55 +6,68 @@ using UnityEngine.SceneManagement;
 
 public class codigo_pacman : MonoBehaviour
 {
+    //Variable Global
+    public static bool PowerUP = false;
+
+    //SerializeField
     [SerializeField] Transform target;
     [SerializeField] Transform target_libre;
-    [SerializeField] string tagComida = "comer";
+
+    //Navmesh
     NavMeshAgent agent;
-    public List<Transform> objetivos;  // Cambiado a una lista de objetivos
+
+    //Listas
+    public List<Transform> objetivos;  
     public List<Transform> portales;
-    public Vector3 borde_izquierdo = new Vector3(-14.62f, -3.89f, 0f);
-    public Vector3 borde_derecho = new Vector3(35.99f, -4.04f, 0f);
+
+    //Vectores
+    public Vector3 Inicio = new Vector3(0f, 0f, 0f);
+
+    //Float
     public float distanciaEscape = 8f;
-    GameObject[] objetosComida;
-    public Stack<GameObject> pilaComidas;
+    private float tiempoEsperaLibre = 0.5f;
+    public float umbralDistancia = 5f;
+
+    //Pilas
+    public Stack<GameObject> pilaComidas = new Stack<GameObject>();
     public Stack<GameObject> pilavidas = new Stack<GameObject>();
-    public int vidasMax = 3;
+
+    //GameObject
     public GameObject comida1;
     public GameObject comida2;
     public GameObject comida3;
-    public LayerMask capaBarrera; // Capa que representa las barreras en tu escena
-    public float distanciaRaycast = 2f;
+
+    //String
     public string perdiste;
     public string ganaste; 
+
+    //Aqui inicia, se llenan las pilas de vida y de comida asi como encontrar
+    //al agente de navmesh
     void Start()
     {
-        pilaComidas = new Stack<GameObject>();
         agent = GetComponent<NavMeshAgent>();
-        objetosComida = GameObject.FindGameObjectsWithTag(tagComida);
-        pilaComidas.Push(comida1);
-        pilaComidas.Push(comida2);
-        pilaComidas.Push(comida3);
+        Comida();
         Libre();
         vidas();
     }
 
-    private float tiempoEsperaLibre = 1f; // Ajusta el tiempo de espera según tus necesidades
-
+    //Actualiza cada fotograman
     void Update()
     {
-        if (pilaComidas.Count > 0)
+        if (pilaComidas.Count > 0 && pilavidas.Count > 0)
         {
             CambiarLado();
+
             float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
             float distanciaAlPortal = Vector3.Distance(transform.position, GetObjetivoMasCercano(portales).position);
             float distanciaChoque = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
-            // Usar un umbral combinado para considerar la distancia en todas las direcciones
-            float umbralDistancia = 5f;
+     
             if (distanciaAlObjetivo < umbralDistancia)
             {
                 if (10 < distanciaAlPortal)
                 {
                     Escapar();
+
                     if (distanciaChoque < 1.2f)
                     {
                         muerte();
@@ -63,6 +76,10 @@ public class codigo_pacman : MonoBehaviour
                 }
                 else
                 {
+                    if(distanciaChoque < 1.2f)
+                    {
+                        muerte();
+                    }
                     agent.SetDestination(GetObjetivoMasCercano(portales).position);
                 }
             }
@@ -76,14 +93,19 @@ public class codigo_pacman : MonoBehaviour
         }
         else
         {
-            
-            Debug.Log("Ganaste");
-            SceneManager.LoadScene(ganaste);
+            if (pilaComidas.Count > 0)
+            {
+                SceneManager.LoadScene(ganaste);
+            }
+            else
+            {
+                SceneManager.LoadScene(perdiste);
+            }
         }
 
     }
 
-
+    //Estado Perseguir
     void InicializarPerseguir()
     {
         agent.updateRotation = false;
@@ -91,11 +113,12 @@ public class codigo_pacman : MonoBehaviour
 
         if (objetivos.Count > 0)
         {
-            target = objetivos[0];  // Establece el primer objetivo por defecto
+            target = objetivos[0];  
             agent.SetDestination(target.position);
         }
     }
 
+    //Estado Libre
     void Libre()
     {
         if (pilaComidas.Count > 0)
@@ -110,9 +133,9 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
+    //Para que se mueva a la sigueinte coomida
     void MoverHaciaSiguienteComida()
     {
-
         if (pilaComidas.Count > 0)
         {
             pilaComidas.Pop();
@@ -120,11 +143,11 @@ public class codigo_pacman : MonoBehaviour
             {
                 GameObject siguienteComida = pilaComidas.Peek();
                 agent.SetDestination(siguienteComida.transform.position);
-                Debug.Log("Siguiente comida: " + siguienteComida.name);
             }
         }
     }
 
+    //Estado Escapar
     void Escapar()
     {
         if (objetivos.Count > 0)
@@ -138,6 +161,7 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
+    //Obtiene el objjetivo mas cercano
     Transform GetObjetivoMasCercano(List<Transform> listaDeObjetivos)
     {
         Transform objetivoMasCercano = null;
@@ -157,6 +181,7 @@ public class codigo_pacman : MonoBehaviour
         return objetivoMasCercano;
     }
 
+    //Estado Teletrannsportar
     void CambiarLado()
     {
         Vector3 actual = transform.position;
@@ -171,6 +196,7 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
+    //Inicializar vidas
     void vidas()
     {
         for(int i=0; i<4; i++)
@@ -180,38 +206,31 @@ public class codigo_pacman : MonoBehaviour
         }
     }
 
+    //Inicializar comida
+    void Comida()
+    {
+        pilaComidas.Push(comida1);
+        pilaComidas.Push(comida2);
+        pilaComidas.Push(comida3);
+    }
+
+    //Estado Muerte
     void muerte()
     {
-        if (objetivos.Count > 0)
-        {
-            Transform objetivoMasCercano = GetObjetivoMasCercano(objetivos);
-            //Vector3 distancia = transform.position - objetivoMasCercano.position;
-        }
-        if(vidasMax > 0)
-        {
-            Debug.Log(vidasMax);
-            Vector3 Inicio = new Vector3(0f, 0f, 0f);
-            transform.position = Inicio;
-            vidasMax--;
-            pilavidas.Pop();
-        }
-        else
-        {
-           
-            Debug.Log("PERDISTE EL JUEGO");
-            SceneManager.LoadScene(perdiste);
-           
-        }
+        transform.position = Inicio;
+        pilavidas.Pop();
     }
+
+    //Cierra el juego
     void CerrarJuego()
     {
-        // Verificar si la aplicación se está ejecutando en el editor de Unity
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-        // Si no está en el editor, cerrar la aplicación
-        Application.Quit();
-#endif
+                // Verificar si la aplicación se está ejecutando en el editor de Unity
+        #if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                // Si no está en el editor, cerrar la aplicación
+                Application.Quit();
+        #endif
     }
 
 }
