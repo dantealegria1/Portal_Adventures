@@ -72,7 +72,7 @@ public class codigo_pacman : MonoBehaviour
                     {
                         muerte();
                     }
-
+                    //hola
                 }
                 else
                 {
