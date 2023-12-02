@@ -17,7 +17,7 @@ public class codigo_pacman : MonoBehaviour
     NavMeshAgent agent;
 
     //Listas
-    public List<Transform> objetivos;  
+    public List<Transform> objetivos;
     public List<Transform> portales;
 
     //Vectores
@@ -36,10 +36,12 @@ public class codigo_pacman : MonoBehaviour
     public GameObject comida1;
     public GameObject comida2;
     public GameObject comida3;
+    public GameObject comida4;
+    public GameObject comida5;
 
     //String
     public string perdiste;
-    public string ganaste; 
+    public string ganaste;
 
     //Aqui inicia, se llenan las pilas de vida y de comida asi como encontrar
     //al agente de navmesh
@@ -61,7 +63,7 @@ public class codigo_pacman : MonoBehaviour
             float distanciaAlObjetivo = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
             float distanciaAlPortal = Vector3.Distance(transform.position, GetObjetivoMasCercano(portales).position);
             float distanciaChoque = Vector3.Distance(transform.position, GetObjetivoMasCercano(objetivos).position);
-     
+
             if (distanciaAlObjetivo < umbralDistancia)
             {
                 if (10 < distanciaAlPortal)
@@ -76,7 +78,7 @@ public class codigo_pacman : MonoBehaviour
                 }
                 else
                 {
-                    if(distanciaChoque < 1.2f)
+                    if (distanciaChoque < 1.2f)
                     {
                         muerte();
                     }
@@ -95,11 +97,11 @@ public class codigo_pacman : MonoBehaviour
         {
             if (pilaComidas.Count > 0)
             {
-                SceneManager.LoadScene(ganaste);
+                SceneManager.LoadScene(perdiste);
             }
             else
             {
-                SceneManager.LoadScene(perdiste);
+                SceneManager.LoadScene(ganaste);
             }
         }
 
@@ -113,7 +115,7 @@ public class codigo_pacman : MonoBehaviour
 
         if (objetivos.Count > 0)
         {
-            target = objetivos[0];  
+            target = objetivos[0];
             agent.SetDestination(target.position);
         }
     }
@@ -127,7 +129,7 @@ public class codigo_pacman : MonoBehaviour
             agent.SetDestination(primerComida.transform.position);
             if (Vector3.Distance(transform.position, primerComida.transform.position) < 1f)
             {
-
+                Destroy(primerComida);
                 MoverHaciaSiguienteComida();
             }
         }
@@ -155,8 +157,8 @@ public class codigo_pacman : MonoBehaviour
             Transform objetivoMasCercano = GetObjetivoMasCercano(objetivos);
             Vector3 direccionAlejarse = transform.position - objetivoMasCercano.position;
 
-                Vector3 nuevaPosicion = transform.position + direccionAlejarse.normalized * 10f; // Ajusta el valor 5f según sea necesario
-                agent.SetDestination(nuevaPosicion);
+            Vector3 nuevaPosicion = transform.position + direccionAlejarse.normalized * 10f; // Ajusta el valor 5f según sea necesario
+            agent.SetDestination(nuevaPosicion);
 
         }
     }
@@ -187,7 +189,7 @@ public class codigo_pacman : MonoBehaviour
         Vector3 actual = transform.position;
         Vector3 Portalito = GetObjetivoMasCercano(portales).position;
         float Distancia = Vector3.Distance(actual, Portalito);
-        if(Distancia<2f)
+        if (Distancia < 2f)
         {
             //Vector3 NuevaPosicion = portales[randomInt].position;
             Vector3 NuevaPosicion = new Vector3(0f, 0f, 0f);
@@ -199,7 +201,7 @@ public class codigo_pacman : MonoBehaviour
     //Inicializar vidas
     void vidas()
     {
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 3; i++)
         {
             GameObject vida = new GameObject("Vida " + (i + 1));
             pilavidas.Push(vida);
@@ -212,6 +214,8 @@ public class codigo_pacman : MonoBehaviour
         pilaComidas.Push(comida1);
         pilaComidas.Push(comida2);
         pilaComidas.Push(comida3);
+        pilaComidas.Push(comida4);
+        pilaComidas.Push(comida5);
     }
 
     //Estado Muerte
@@ -224,13 +228,13 @@ public class codigo_pacman : MonoBehaviour
     //Cierra el juego
     void CerrarJuego()
     {
-                // Verificar si la aplicación se está ejecutando en el editor de Unity
-        #if UNITY_EDITOR
+        // Verificar si la aplicación se está ejecutando en el editor de Unity
+#if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                // Si no está en el editor, cerrar la aplicación
-                Application.Quit();
-        #endif
+#else
+        // Si no está en el editor, cerrar la aplicación
+        Application.Quit();
+#endif
     }
 
 }
