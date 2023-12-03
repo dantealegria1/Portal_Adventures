@@ -220,7 +220,7 @@ public class codigo_pacman : MonoBehaviour
         Vector3 actual = transform.position;
         Vector3 Portalito = GetObjetivoMasCercano(portales).position;
         float Distancia = Vector3.Distance(actual, Portalito);
-        if (Distancia < 2f)
+        if (Distancia < 1f)
         {
             Vector3 NuevaPosicion = new Vector3(0f, 0f, 0f);
             transform.position = NuevaPosicion;
