@@ -428,7 +428,6 @@ GameObject:
   m_Component:
   - component: {fileID: 149791831}
   - component: {fileID: 149791832}
-  - component: {fileID: 149791833}
   m_Layer: 0
   m_Name: Comida_Belica2
   m_TagString: comer
@@ -445,8 +444,8 @@ Transform:
   m_GameObject: {fileID: 149791830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1636, y: 0.1213, z: 0.103614636}
-  m_LocalScale: {x: 3.0299356, y: 2.832365, z: 1}
+  m_LocalPosition: {x: -4.38, y: 6.07, z: 0.103614636}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.24194336}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127704455}
@@ -492,7 +491,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -5226077399762514131, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
+  m_Sprite: {fileID: 1066357937, guid: 7b44a3113c24e6c4b83a02faebc0253e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -503,27 +502,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &149791833
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149791830}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -8734175364338217970, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &156011722
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +551,6 @@ GameObject:
   m_Component:
   - component: {fileID: 188005048}
   - component: {fileID: 188005047}
-  - component: {fileID: 188005049}
   m_Layer: 0
   m_Name: Comida_Belica5
   m_TagString: Untagged
@@ -622,7 +599,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -5226077399762514131, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
+  m_Sprite: {fileID: 1066357937, guid: 7b44a3113c24e6c4b83a02faebc0253e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -643,32 +620,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -15.2181, y: 18.0596, z: 0.103614636}
-  m_LocalScale: {x: 2.8073657, y: 2.9776125, z: 1}
+  m_LocalScale: {x: 0.50503, y: 0.50503, z: 0.09881921}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127704455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &188005049
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188005046}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -8734175364338217970, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &207430577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1050,6 @@ GameObject:
   m_Component:
   - component: {fileID: 342812684}
   - component: {fileID: 342812685}
-  - component: {fileID: 342812686}
   m_Layer: 0
   m_Name: Comida_Belica4
   m_TagString: Untagged
@@ -1111,8 +1066,8 @@ Transform:
   m_GameObject: {fileID: 342812683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.5945, y: 12.799, z: 0.103614636}
-  m_LocalScale: {x: 3.047538, y: 2.884208, z: 1}
+  m_LocalPosition: {x: -35.64, y: 15.21, z: 0.103614636}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.1625967}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127704455}
@@ -1158,7 +1113,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -5226077399762514131, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
+  m_Sprite: {fileID: 1066357937, guid: 7b44a3113c24e6c4b83a02faebc0253e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1169,27 +1124,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &342812686
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342812683}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -8734175364338217970, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &349891771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2244,6 @@ GameObject:
   m_Component:
   - component: {fileID: 781253534}
   - component: {fileID: 781253535}
-  - component: {fileID: 781253536}
   m_Layer: 0
   m_Name: Comida_Belica3
   m_TagString: comer
@@ -2327,8 +2260,8 @@ Transform:
   m_GameObject: {fileID: 781253533}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.3386, y: 1.2222, z: 0.103614636}
-  m_LocalScale: {x: 2.9403267, y: 2.8231614, z: 0.37244}
+  m_LocalPosition: {x: -38.82, y: 6.5, z: 0.103614636}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.043501683}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127704455}
@@ -2374,7 +2307,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -5226077399762514131, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
+  m_Sprite: {fileID: 1066357937, guid: 7b44a3113c24e6c4b83a02faebc0253e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2385,27 +2318,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &781253536
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781253533}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -8734175364338217970, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &806720028
 GameObject:
   m_ObjectHideFlags: 0
@@ -8820,8 +8732,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1824491544}
   - component: {fileID: 1824491545}
-  - component: {fileID: 1824491546}
-  - component: {fileID: 1824491547}
   m_Layer: 0
   m_Name: comida_belica
   m_TagString: comer
@@ -8838,8 +8748,8 @@ Transform:
   m_GameObject: {fileID: 1824491543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.62, y: 18.84, z: 0.103614636}
-  m_LocalScale: {x: 2.5566409, y: 2.549093, z: 1}
+  m_LocalPosition: {x: 8.59, y: 18.29, z: 0.103614636}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.24283919}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127704455}
@@ -8896,54 +8806,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1824491546
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824491543}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -8734175364338217970, guid: 219367425e327aa4e9a01ac2375e8f25, type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!50 &1824491547
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824491543}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1835108714
 GameObject:
   m_ObjectHideFlags: 0
