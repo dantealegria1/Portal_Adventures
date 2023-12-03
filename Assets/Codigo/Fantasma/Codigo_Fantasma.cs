@@ -40,7 +40,7 @@ public class Codigo_Fantasma : MonoBehaviour
      */
     void Update()
     {
-        Estado.text = "Estado del Enemigo: " + EstadoActual;
+        Estado.text = "Estado del Enemigo: " + EstadoActual; 
         float distancia = Vector3.Distance(objeto1.position, objeto2.position);
         if (distancia < 6)
         {

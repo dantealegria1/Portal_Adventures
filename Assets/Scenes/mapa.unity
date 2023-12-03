@@ -134,7 +134,9 @@ GameObject:
   - component: {fileID: 129416866}
   - component: {fileID: 129416865}
   - component: {fileID: 129416867}
-  - component: {fileID: 129416868}
+  - component: {fileID: 129416869}
+  - component: {fileID: 129416870}
+  - component: {fileID: 129416871}
   m_Layer: 0
   m_Name: Pacman_Belico
   m_TagString: Untagged
@@ -222,7 +224,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Personaje: {fileID: 806720028}
---- !u!95 &129416868
+--- !u!50 &129416869
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129416864}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &129416870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129416864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c02ec31b61fcc4e86bcdb2c7f7fd1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &129416871
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using TMPro;
 
 public class codigo_pacman : MonoBehaviour
 {
+    
     //TextMeshPro
     public TextMeshProUGUI textoMeshPro;
     public TextMeshProUGUI Estado;
@@ -51,9 +52,11 @@ public class codigo_pacman : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        
         Comida();
         Libre();
         vidas();
+        //BarajarPila();
     }
 
     /*
@@ -72,10 +75,14 @@ public class codigo_pacman : MonoBehaviour
     */
     void Update()
     {
+        
         textoMeshPro.text = "Vidas Restantes: " + pilavidas.Count.ToString() + 
         "\nComida Faltante: " + pilaComidas.Count.ToString();
         Estado.text = "Estado del Agente: " + EstadoActual;
-        Debug.Log(pilaComidas.Count);
+        
+
+        // Verificar si el componente X es mayor que el componente Y
+       
         if (pilaComidas.Count > 0 && pilavidas.Count > 0)
         {
             CambiarLado();
@@ -244,6 +251,23 @@ public class codigo_pacman : MonoBehaviour
         pilaComidas.Push(comida5);
     }
 
+    /*
+    Esta funcion nos ayuda a que al inicio la pila se ordene de diferente manera
+    No cambia a mitad de la aprtida, solamente ordena la pila de manera distinta
+     */
+    void BarajarPila()
+    {
+        List<GameObject> listaComidas = new List<GameObject>(pilaComidas);
+        pilaComidas.Clear();
+
+        while (listaComidas.Count > 0)
+        {
+            int indiceAleatorio = Random.Range(0, listaComidas.Count);
+            GameObject comida = listaComidas[indiceAleatorio];
+            listaComidas.RemoveAt(indiceAleatorio);
+            pilaComidas.Push(comida);
+        }
+    }
     /*
     Estado Muerte
     Regresa al agente al inicio y quita el elemento en el tope de la pila
