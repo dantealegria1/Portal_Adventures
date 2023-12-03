@@ -821,7 +821,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ca89a4e5b75b7734894111c92c1c057d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 46bfb5ee55523e54da43fc1cc698b51d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1004,7 +1004,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1881261134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1578674532}
+        m_TargetAssemblyTypeName: cambiar_escena, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: creditos
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1881261134
 MonoBehaviour:
   m_ObjectHideFlags: 0
