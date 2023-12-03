@@ -1,42 +1,63 @@
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class Codigo_Fantasma : MonoBehaviour
 {
-    public Transform objeto1; // Debes asignar el primer objeto en el Inspector
-    public Transform objeto2; // Debes asignar el segundo objeto en el Inspector
-    [SerializeField] Transform target; // Declarar la variable target aquí para que sea accesible en el Inspector
-    NavMeshAgent agent;
-    public Vector3 inicio = new Vector3(0.33f, 2.76f, 0f);
-    public Vector3[] mitadDerecha;
-    public Vector3[] mitadIzquierda;
+    //TextMeshPro
+    public TextMeshProUGUI Estado;
 
+    //Coordenadas de diferntes objetos
+    public Transform objeto1;
+    public Transform objeto2;
+
+    //Declaramos nuestro target
+    [SerializeField] Transform target;
+
+    //Navmesh
+    NavMeshAgent agent;
+
+    //Vectores
+    public Vector3[] mitadDerecha;
+
+    //String
+    public string EstadoActual;
+
+    //Inicializo mi agente
     void Start()
     {
         crearPosiciones();
         agent = GetComponent<NavMeshAgent>();
     }
 
+    /*
+    Cada fotograma se verifica la distancia entre mi objeto1 y objeto2 los cuales son el enemigo y su objetivo
+    Se verifica su distancia si es menor a en este cvaso 6 entonces va iniciar a perseguirlo
+    Si no es asi va seguir en su estado libre
+
+    A diferencia del codigo del astronauta este no tiene condiciones de paro, debido a que no las necesita ya que el
+    que establece si se sigue jugando o no es el otro codigo dependiendo del contenido de las pilas
+     */
     void Update()
     {
-        if (objeto1 != null && objeto2 != null)
+        Estado.text = "Estado del Enemigo: " + EstadoActual; 
+        float distancia = Vector3.Distance(objeto1.position, objeto2.position);
+        if (distancia < 6)
         {
-            float distancia = Vector3.Distance(objeto1.position, objeto2.position);
-            if (distancia < 6)
-            {
-                InicializarPerseguir();
-            }
-            else
-            {
-                Libre();
-            }
+            InicializarPerseguir();
+            EstadoActual = "Perseguir";
         }
         else
         {
-            Debug.LogWarning("Make sure to assign the objects in the Inspector.");
+            Libre();
+            EstadoActual = "Libre";
         }
-    }
 
+    }
+    /*
+    Estado perseguir
+    Aqui se obtiene la posicion de mi target y se dirige directamente hacia el
+     */
     public void InicializarPerseguir()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -52,7 +73,13 @@ public class Codigo_Fantasma : MonoBehaviour
             }
         }
     }
+    /*
+    Estado libre
+    Aqui va estarse moviendo a lo largo del mapa hacia coordenada preestablecidas, en el momento que llegue a su destino
+    buscara otro nuevo
 
+    Esto se hace para que al recorrer diferentes zonas del mapa encuentre a su objetivo
+     */
     void Libre()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -64,23 +91,28 @@ public class Codigo_Fantasma : MonoBehaviour
             if (agent.isStopped || agent.remainingDistance <= agent.stoppingDistance)
             {
                 Vector3 destino = RandomizarCoordenadas();
-                agent.SetDestination(destino);   
+                agent.SetDestination(destino);
             }
         }
     }
 
+    /*
+    Esta funcion es un apoyo para libre, ya que elige alguna coordenada aleatoria para poder moverse
+     */
     Vector3 RandomizarCoordenadas()
     {
         int indice = Random.Range(0, 18);
-       
+
         Vector3 randomCoordinates = mitadDerecha[indice];
 
         return randomCoordinates;
     }
 
+    /*
+    Funcion en la que estan declaradas las posiciones a las que puede ir
+     */
     void crearPosiciones()
     {
-        //la derecha
         mitadDerecha = new Vector3[18];
         mitadDerecha[0] = new Vector3(4f, 13f, 0f);
         mitadDerecha[1] = new Vector3(26f, 12f, 0f);

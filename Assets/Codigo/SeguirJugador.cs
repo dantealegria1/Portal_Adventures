@@ -16,8 +16,7 @@ public class SeguirJugador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         transform.position = new Vector3(Personaje.transform.position.x, Personaje.transform.position.y, initialCameraPosition.z);
     }
 }
-
