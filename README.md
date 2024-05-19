@@ -1,7 +1,7 @@
 ## PORTAL ADVENTURE
 
-PORTAL ADVENTURE es un juego basado en la implementacion de automatas dentro del ecosistema de unity.
-Junto con c# estos automatas crean un movimiento autonomo basado en los diferentes estimulos que se producen durante la partida 
+PORTAL ADVENTURE is a game based on the implementation of automata within the Unity ecosystem. Using C#, 
+these automata create autonomous movement based on various stimuli encountered during gameplay.
 
 ## Autores
 
